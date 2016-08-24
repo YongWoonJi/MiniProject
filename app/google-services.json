@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "119593126763",
+    "project_id": "miniproject-1470719880261"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119593126763:android:4cc8a2dfacdb9dcb",
+        "android_client_info": {
+          "package_name": "com.example.tacademy.miniproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsIU0y1MfdgEYK8tw1vlGcsMviZdo5aMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

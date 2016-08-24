@@ -16,7 +16,6 @@ import okhttp3.ResponseBody;
  * Created by Tacademy on 2016-08-09.
  */
 public abstract class AbstractRequest<T> extends NetworkRequest<T> {
-
     protected HttpUrl.Builder getBaseUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
@@ -32,11 +31,18 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
         if (temp.getCode() == 1) {
             T result = gson.fromJson(text, getType());
             return result;
-        } else {
+        } else if (temp.getCode() == 2) {
             Type type = new TypeToken<NetworkResult<String>>(){}.getType();
             NetworkResult<String> result = gson.fromJson(text, type);
             throw new IOException(result.getResult());
+        } else {
+            T result = gson.fromJson(text, getType(temp.getCode()));
+            return result;
         }
+    }
+
+    protected Type getType(int code) {
+        return getType();
     }
 
     protected abstract Type getType();

@@ -12,6 +12,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +42,8 @@ public class NetworkManager {
         ClearableCookieJar cookieJar =
                 new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
         builder.cookieJar(cookieJar);
+        builder.followRedirects(true);
+        builder.addInterceptor(new RedirectInterceptor());
 
         File cacheDir = new File(context.getCacheDir(), "network");
         if (!cacheDir.exists()) {
@@ -98,6 +101,10 @@ public class NetworkManager {
     public <T> void getNetworkData(NetworkRequest<T> request, OnResultListener<T> listener) {
         request.setOnResultListener(listener);
         request.process(client);
+    }
+
+    public <T> T getNetworkDataSync(NetworkRequest<T> request) throws IOException {
+        return request.processSync(client);
     }
 
     public void cancelAll() {

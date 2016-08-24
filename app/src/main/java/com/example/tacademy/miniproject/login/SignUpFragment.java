@@ -42,26 +42,25 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-    @OnClick(R.id.btn_signup)
-    public void onSignUp() {
+    @OnClick(R.id.btn_sign_up)
+    public void onSingUp() {
         String username = nameView.getText().toString();
         final String email = emailView.getText().toString();
         final String password = passwordView.getText().toString();
-        SignUpRequest request = new SignUpRequest(getContext(), username, password, email, "1234");
+        String regid = PropertyManager.getInstance().getRegistrationId();
+        SignUpRequest request = new SignUpRequest(getContext(), username, password, email, regid);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 User user = result.getResult();
                 PropertyManager.getInstance().setEmail(email);
                 PropertyManager.getInstance().setPassword(password);
-                PropertyManager.getInstance().setRegistrationId("1234");
-                Toast.makeText(getContext(), "user id: " + user.getId(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "user id :" + user.getId(), Toast.LENGTH_SHORT).show();
                 ((SimpleLoginActivity)getActivity()).moveMainActivity();
             }
 

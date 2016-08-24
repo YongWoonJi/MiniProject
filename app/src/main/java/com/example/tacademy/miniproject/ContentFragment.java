@@ -37,11 +37,11 @@ public class ContentFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @BindView(R.id.rv_list)
     RecyclerView listView;
 
     ContentAdapter mAdapter;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +53,6 @@ public class ContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         ButterKnife.bind(this, view);
         listView.setAdapter(mAdapter);
@@ -61,6 +60,21 @@ public class ContentFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_content, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_content_add) {
+            Intent intent = new Intent(getContext(), ContentAddActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onStart() {
@@ -79,21 +93,5 @@ public class ContentFragment extends Fragment {
                 Toast.makeText(getContext(), "network fail", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_content, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_content_add) {
-            Intent intent = new Intent(getContext(), ContentAddActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

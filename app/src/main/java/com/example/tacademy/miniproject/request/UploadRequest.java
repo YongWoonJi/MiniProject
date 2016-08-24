@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.lang.reflect.Type;
-import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
@@ -45,7 +44,7 @@ public class UploadRequest extends AbstractRequest<NetworkResult<ContentData>> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<List<ContentData>>>(){}.getType();
+        return new TypeToken<NetworkResult<ContentData>>(){}.getType();
     }
 
     @Override

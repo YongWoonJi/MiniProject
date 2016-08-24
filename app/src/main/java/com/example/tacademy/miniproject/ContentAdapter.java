@@ -14,7 +14,6 @@ import java.util.List;
  * Created by Tacademy on 2016-08-12.
  */
 public class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
-
     List<ContentData> items = new ArrayList<>();
 
     public void clear() {

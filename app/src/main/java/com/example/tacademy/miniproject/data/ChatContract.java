@@ -3,7 +3,7 @@ package com.example.tacademy.miniproject.data;
 import android.provider.BaseColumns;
 
 /**
- * Created by Tacademy on 2016-08-11.
+ * Created by Administrator on 2016-08-11.
  */
 public class ChatContract {
     public interface ChatUser extends BaseColumns {
@@ -18,7 +18,6 @@ public class ChatContract {
         public static final int TYPE_SEND = 0;
         public static final int TYPE_RECEIVE = 1;
         public static final int TYPE_DATE = 2;
-
 
         public static final String TABLE = "chatmessage";
         public static final String COLUMN_USER_ID = "uid";

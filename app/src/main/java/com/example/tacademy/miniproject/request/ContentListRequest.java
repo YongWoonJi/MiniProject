@@ -17,7 +17,6 @@ import okhttp3.Request;
  */
 public class ContentListRequest extends AbstractRequest<NetworkResult<List<ContentData>>> {
     Request request;
-
     public ContentListRequest(Context context) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("contents")
@@ -26,7 +25,6 @@ public class ContentListRequest extends AbstractRequest<NetworkResult<List<Conte
                 .url(url)
                 .build();
     }
-
     @Override
     protected Type getType() {
         return new TypeToken<NetworkResult<List<ContentData>>>(){}.getType();
